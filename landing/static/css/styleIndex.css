@@ -1,0 +1,94 @@
+.banner {
+    width: 100%;
+    height: 30vh;
+}
+
+.logo {
+    width: 10vh;
+    height: 10vh;
+}
+
+.carrusel {
+    height: 70vh;
+}
+
+.foto {
+    width: 100%;
+    height: 100%;
+    object-fit:contain;
+
+}
+
+.galeria {
+    background-color: rgb(231, 231, 231);
+}
+
+.titulo {
+    font-size: calc(2em + 2.5vw);
+    font-weight: 500;
+    object-fit: cover;
+}
+
+.texto1 {
+    position: absolute;
+    right: 15%;
+    top: 20%;
+    left: 15%;
+    bottom: 35%;
+    z-index: 10;
+    color: #fff;
+    text-align: center;
+    font-size: calc(3em + 3vw) ;
+    font-weight: 500;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: black;
+}
+
+.texto2 {
+    position: absolute;
+    right: 15%;
+    top: 15%;
+    left: 15%;
+    bottom: 15%;
+    z-index: 10;
+    color: #000000;
+    text-align: center;
+    font-size: calc(2em + 2.5vw) ;
+    font-weight: 500;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+    ;
+}
+
+.codigo{
+    color: rgb(250, 0, 0);
+    background: rgba(0, 255, 255, 0.7);    
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.superman-icon {
+    position: fixed;
+    right: 20px;
+    top: 84%;
+    transform: translateY(-50%);
+    width: 50px;
+    cursor: pointer;
+}
+
+@media (max-width: 576px) {
+    .navbar .form-control {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .navbar .btn-secondary {
+        width: 100%;
+    }
+
+    .navbar .d-flex {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
