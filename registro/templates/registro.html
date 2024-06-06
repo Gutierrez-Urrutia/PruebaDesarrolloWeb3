@@ -4,20 +4,59 @@
 {% block title %}Comicstore - Contacto{% endblock %}
 {% block content %}
 <div>
-    <form class="formulario mb-5">
+    <form class="formulario mb-5" method="post" action="{% url 'login' %}">
         <h1>¡Bienvenido!</h1>
         <h4>Registro de nuevo usuario</h4>
         <div class="mb-3">
-            <label for="user" class="form-label">Nombre de Usuario</label>
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="lastname" class="form-label">Apellido</label>
             <input type="text" class="form-control" id="user" required>
+        </div>
+        <div class="mb-3">
+            <label for="run" class="form-label">RUN</label>
+            <input type="text" class="form-control" id="run" pattern="^\d{1,2}\.\d{3}\.\d{3}-[\dkK]$" required>
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Correo Electrónico</label>
             <input type="email" class="form-control" id="email" required>
         </div>
         <div class="mb-3">
-            <label for="telefono" class="form-label">Número de Teléfono</label>
-            <input type="text" class="form-control" id="telefono" pattern="^\+56\s\d\s\d{4}\s\d{4}$" placeholder="+56 9 9999 9999" required>
+            <label for="telefono" class="form-label">Teléfono Móvil</label>
+            <input type="text" class="form-control" id="telefono" pattern="^\+56\-\d\-\d{4}\-\d{4}$" placeholder="+56 9 9999 9999" required>
+        </div>
+        <div class="mb-3">
+            <label for="adress" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="adress" placeholder="" required>
+        </div>
+        <div class="mb-3">
+            <label for="pais" class="form-label">Seleccione país</label>
+            <select class="form-select" id="pais">
+                <option value=""> -- Seleccione --</option>
+                {% for pais in paises %}
+                    <option value="{{ pais.id }}">{{ pais.nombre_pais }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="region" class="form-label">Seleccione región</label>
+            <select class="form-select" id="region" disabled>
+                <option value=""> -- Seleccione --</option>
+                {% for region in regiones %}
+                    <option value="{{ region.id }}">{{ region.nombre_region }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="comuna" class="form-label">Seleccione comuna</label>
+            <select class="form-select" id="comuna" disabled>
+                <option value=""> -- Seleccione --</option>
+                <!--{% for comuna in comunas %}
+                    <option value="{{ comuna.id }}">{{ comuna.nombre_comuna }}</option>
+                {% endfor %}-->
+            </select>
         </div>
         <div class="mb-3">
             <label for="pass" class="form-label">Contraseña</label>
@@ -27,7 +66,7 @@
             <label for="repass" class="form-label">Repetir Contraseña</label>
             <input type="password" class="form-control" id="repass" required>
         </div>
-        <button type="button" class="btn btn-primary" onclick="obtenerDatos()">Registrarse</button>
+        <button type="submit" class="btn btn-primary" onclick="obtenerDatos()">Registrarse</button>
         <div>
             <h6>¿Ya tienes una cuenta? <a href="{% url 'login' %}"><u>Ingresa aquí</u></a></h4>
         </div>
@@ -35,6 +74,6 @@
 </div>
 {% endblock %}
 {% block js %}
-<!-- <script src="{% static 'js/login.js' %}"></script> -->
+    <script src="{% static 'js/registro.js'%}"></script> 
 {% endblock %}
     

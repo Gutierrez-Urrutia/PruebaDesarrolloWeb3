@@ -1,8 +1,14 @@
 from django.shortcuts import render
+from .models import Pais, Region, Comuna
 
-from django.shortcuts import render
 
 # Create your views here.
+#def registro(request):
+#    context = {}
+#    return render(request, 'registro.html', context)
+
 def registro(request):
-    context = {}
-    return render(request, 'registro.html', context)
+    paises = Pais.objects.all()
+    regiones = Region.objects.all()
+    comunas = Comuna.objects.all()
+    return render(request, 'registro.html', {'paises': paises, 'regiones': regiones, 'comunas': comunas})
