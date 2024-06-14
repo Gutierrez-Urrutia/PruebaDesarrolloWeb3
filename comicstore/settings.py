@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'contacto',
     'producto',
     'registro',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

@@ -34,28 +34,19 @@
         <div class="mb-3">
             <label for="pais" class="form-label">Seleccione país</label>
             <select class="form-select" id="pais">
-                <option value=""> -- Seleccione --</option>
-                {% for pais in paises %}
-                    <option value="{{ pais.id }}">{{ pais.nombre_pais }}</option>
-                {% endfor %}
+                <option value="">Seleccione país</option>
             </select>
         </div>
         <div class="mb-3">
             <label for="region" class="form-label">Seleccione región</label>
             <select class="form-select" id="region" disabled>
-                <option value=""> -- Seleccione --</option>
-                {% for region in regiones %}
-                    <option value="{{ region.id }}">{{ region.nombre_region }}</option>
-                {% endfor %}
+                <option value="">Seleccione región</option>
             </select>
         </div>
         <div class="mb-3">
             <label for="comuna" class="form-label">Seleccione comuna</label>
             <select class="form-select" id="comuna" disabled>
-                <option value=""> -- Seleccione --</option>
-                <!--{% for comuna in comunas %}
-                    <option value="{{ comuna.id }}">{{ comuna.nombre_comuna }}</option>
-                {% endfor %}-->
+                <option value="">Seleccione comuna</option> 
             </select>
         </div>
         <div class="mb-3">
@@ -74,6 +65,6 @@
 </div>
 {% endblock %}
 {% block js %}
-    <script src="{% static 'js/registro.js'%}"></script> 
+    <script src="{% static 'js/registro.js' %}"></script>
 {% endblock %}
     
