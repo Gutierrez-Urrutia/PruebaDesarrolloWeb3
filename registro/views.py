@@ -1,8 +1,8 @@
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
-from .models import Cliente, Pais, Region, Comuna
+from django.shortcuts import render #redirect
+from .models import Pais, Region, Comuna
 from django.views.decorators.csrf import csrf_exempt
-from .forms import ClienteForm
+#from .forms import ClienteForm
 
 
 
@@ -35,13 +35,13 @@ def comunas_por_region(request, id_region):
     # Devolver la respuesta en formato JSON
     return JsonResponse(comunas_list, safe=False)
 
-@csrf_exempt
-def registrar_cliente(request):
-    if request.method == 'POST':
-        form = ClienteForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
-    else:
-        form = ClienteForm()
-    return render(request, 'registro.html', {'form': form})
+# @csrf_exempt
+# def registrar_cliente(request):
+#     if request.method == 'POST':
+#         form = ClienteForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('login')
+#     else:
+#         form = ClienteForm()
+#     return render(request, 'registro.html', {'form': form})
