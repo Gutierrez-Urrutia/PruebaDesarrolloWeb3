@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const option = document.createElement('option');
             option.value = pais.id_pais;
             option.textContent = pais.nombre_pais;
+            option.setAttribute('name', pais.id_pais);
+            option.setAttribute('id', pais.id_pais);
             selectPaises.appendChild(option);
         });
         
@@ -25,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const option = document.createElement('option');
                     option.value = region.id_region;
                     option.textContent = region.nombre_region;
+                    option.setAttribute('name', region.id_region);
+                    option.setAttribute('id', region.id_region);
                     selectRegiones.appendChild(option);
                 });
             });
@@ -44,6 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const option = document.createElement('option');
                     option.value = comuna.id_comuna;
                     option.textContent = comuna.nombre_comuna;
+                    option.setAttribute('name', comuna.id_comuna);
+                    option.setAttribute('id', comuna.id_comuna);
                     selectComunas.appendChild(option);
                 });
             })

@@ -3,15 +3,17 @@ from django.db import models
 # Create your models here.
 
 class Cliente(models.Model):
-    rut = models.CharField(primary_key = True, max_length=12)
-    nombre_usuario = models.CharField(max_length=100)
-    email = models.EmailField()
+    
+    nombre = models.CharField(max_length=100)
+    apellido= models.CharField(max_length=100)
+    rut = models.CharField(max_length=12)
+    email = models.EmailField(primary_key = True, max_length=100)
     telefono = models.CharField(max_length=20)
-    direccion = models.CharField(max_length=200)
-    id_ciudad = models.CharField(max_length=10)
-    id_pais = models.CharField(max_length=10)
-    id_comuna = models.CharField(max_length=10)
-    codigo_postal = models.CharField(max_length=7)
+    direccion = models.CharField(max_length=200, null=True, blank=True)
+    pais = models.CharField(max_length=50)
+    region = models.CharField(max_length=50)
+    comuna = models.CharField(max_length=50)
+    password = models.CharField(max_length=20)
 
     def __str__(self):
         return self.nombre
