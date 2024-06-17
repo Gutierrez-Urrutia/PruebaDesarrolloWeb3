@@ -12,11 +12,13 @@ from django.views.decorators.csrf import csrf_exempt
 #    return render(request, 'registro.html', context)
 
 def registro(request):
-    paises = Pais.objects.all()
-    regiones = Region.objects.all()
-    comunas = Comuna.objects.all()
-    return render(request, 'registro.html', {'paises': paises, 'regiones': regiones, 'comunas': comunas})
-
+    if(request.method == 'GET'):
+        paises = Pais.objects.all()
+        regiones = Region.objects.all()
+        comunas = Comuna.objects.all()
+        return render(request, 'registro.html', {'paises': paises, 'regiones': regiones, 'comunas': comunas})
+    else:
+        request.POST[""]
 def todos_los_paises(request):
     paises = Pais.objects.all()
     paises_list = list(paises.values('id_pais', 'nombre_pais'))  # Asumiendo que el modelo tiene estos campos
