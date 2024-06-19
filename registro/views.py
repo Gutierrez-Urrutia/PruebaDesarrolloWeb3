@@ -1,7 +1,8 @@
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render #redirect
 from .models import Pais, Region, Comuna
-from rest_framework import viewsets
+from django.views.decorators.csrf import csrf_exempt
+#from .forms import ClienteForm
 
 
 
@@ -11,11 +12,13 @@ from rest_framework import viewsets
 #    return render(request, 'registro.html', context)
 
 def registro(request):
-    paises = Pais.objects.all()
-    regiones = Region.objects.all()
-    comunas = Comuna.objects.all()
-    return render(request, 'registro.html', {'paises': paises, 'regiones': regiones, 'comunas': comunas})
-
+    if(request.method == 'GET'):
+        paises = Pais.objects.all()
+        regiones = Region.objects.all()
+        comunas = Comuna.objects.all()
+        return render(request, 'registro.html', {'paises': paises, 'regiones': regiones, 'comunas': comunas})
+    else:
+        request.POST[""]
 def todos_los_paises(request):
     paises = Pais.objects.all()
     paises_list = list(paises.values('id_pais', 'nombre_pais'))  # Asumiendo que el modelo tiene estos campos
@@ -33,3 +36,14 @@ def comunas_por_region(request, id_region):
     comunas_list = list(comunas.values('id_comuna', 'nombre_comuna'))
     # Devolver la respuesta en formato JSON
     return JsonResponse(comunas_list, safe=False)
+
+# @csrf_exempt
+# def registrar_cliente(request):
+#     if request.method == 'POST':
+#         form = ClienteForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('login')
+#     else:
+#         form = ClienteForm()
+#     return render(request, 'registro.html', {'form': form})
