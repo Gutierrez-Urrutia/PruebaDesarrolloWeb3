@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'producto',
     'registro',
     'rest_framework',
+    'crud',
 ]
 
 MIDDLEWARE = [

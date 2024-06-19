@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/styleLogin.css' %}">{% endblock %}
+{% block title %}Comicstore - Contacto{% endblock %}
+{% block content %}
+<div>
+    <form class="formulario mb-5">
+        <h1>Ingreso de Administrador</h1>
+        <div class="mb-3">
+            <label for="user" class="form-label">Nombre de Usuario</label>
+            <input type="email" class="form-control" id="user" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="pass" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="pass">
+        </div>
+        <div class="mb-3">
+            <label class="recuperarContraseña"><u>¿Olvidaste tu contraseña?</u></label>
+        </div>
+        <a href="{% url 'listar' %}" type="button" class="btn btn-primary" onclick="obtenerDatos()">Iniciar Sesión</a>
+    </form>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/crud.js' %}"></script>
+{% endblock %}
+    
