@@ -45,6 +45,23 @@
         {% endfor %}
     </div>
 </div>
+<div class="pagination">
+    <span class="step-links">
+        {% if comics.has_previous %}
+            <a href="?page=1#comics">&laquo; primera</a>
+            <a href="?page={{ comics.previous_page_number }}#comics">anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ comics.number }} de {{ comics.paginator.num_pages }}.
+        </span>
+
+        {% if comics.has_next %}
+            <a href="?page={{ comics.next_page_number }}#comics">siguiente</a>
+            <a href="?page={{ comics.paginator.num_pages }}#comics">última &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 {% endblock %}
 {% block js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
