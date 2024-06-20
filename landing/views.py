@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from crud.models import Comic
 
 # Create your views here.
 def index(request):
-    context = {}
-    return render(request, 'index.html', context)
+
+    comics = Comic.objects.all()
+    return render(request, 'index.html', {'comics': comics})

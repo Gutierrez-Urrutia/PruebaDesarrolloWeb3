@@ -19,7 +19,7 @@ def run():
             id_comuna, id_region, nombre_comuna = row
 
             try:
-                region = Region.objects.get(id_region=id_region)
+                id_region = Region.objects.get(id_region=id_region)
             except Region.DoesNotExist:
                 print(f"Error: No se encontró la región con id_region={id_region}")
                 continue  # Saltar a la siguiente comuna si no se encuentra la región
@@ -27,7 +27,7 @@ def run():
             Comuna.objects.create(
                 id_comuna=id_comuna,
                 nombre_comuna=nombre_comuna,
-                region=region
+                id_region=id_region
             )
 
 if __name__ == '__main__':

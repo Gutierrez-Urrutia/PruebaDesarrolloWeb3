@@ -16,7 +16,7 @@ def run():
 
     for region_data in data:
         try:
-            pais = Pais.objects.get(id_pais=region_data['pais_id']) 
+            id_pais = Pais.objects.get(id_pais=region_data['pais_id']) 
         except Pais.DoesNotExist:
             print(f"Error: No se encontró el país con id_pais={region_data['pais_id']}")
             continue  # Saltar a la siguiente región si no se encuentra el país
@@ -24,7 +24,7 @@ def run():
         Region.objects.create(
             id_region=str(region_data['region_id']),  # Convertir a str si es necesario
             nombre_region=region_data['nombre'],
-            pais=pais
+            id_pais=id_pais
         )
 
 if __name__ == '__main__':
