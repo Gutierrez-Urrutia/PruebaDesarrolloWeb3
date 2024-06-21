@@ -5,23 +5,17 @@ from django.views.decorators.csrf import csrf_exempt
 from .forms import FormCliente
 
 
-
-# Create your views here.
-#def registro(request):
-#    context = {}
-#    return render(request, 'registro.html', context)
-
 def registro(request):
     if(request.method == 'GET'):
-        paises = Pais.objects.all()
-        regiones = Region.objects.all()
-        comunas = Comuna.objects.all()
-        return render(request, 'registro.html', {'paises': paises, 'regiones': regiones, 'comunas': comunas})
+        form = FormCliente()
+        return render(request, 'registro.html', {'form': form })
     else:
         form = FormCliente(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('registro')
+            return render(request, 'registro.html', {'form': FormCliente(), 'registro_exitoso': True})
+        else:
+            return render(request, 'registro.html', {'form': form})
 
 def todos_los_paises(request):
     paises = Pais.objects.all()

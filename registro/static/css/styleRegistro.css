@@ -53,3 +53,7 @@
         width: 100%;
     }
 }
+
+.errorlist {
+    color: rgb(242, 87, 87); /* Cambia 'red' por el código de color que prefieras */
+}
