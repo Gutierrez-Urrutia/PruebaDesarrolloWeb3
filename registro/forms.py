@@ -12,7 +12,7 @@ class FormCliente(forms.ModelForm):
             'nombre',
             'apellido',
             'rut',
-            'email',
+            'username',
             'telefono',
             'direccion',
             'pais',
@@ -24,10 +24,10 @@ class FormCliente(forms.ModelForm):
             'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su nombre'}),
             'apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su apellido'}),
             'rut': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su rut sin puntos y con guión'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'usuario@correo.com'}),
+            'username': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'usuario@correo.com'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '+56912345678'}),
             'direccion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su dirección'}),
-            'pais' : forms.Select(attrs={'class': 'form-control', 'id': 'pais'}), # 'form-control' es una clase de Bootstrap que se aplica a los elementos de formulario para darles un estilo uniforme
+            'pais' : forms.Select(attrs={'class': 'form-control', 'id': 'pais'}), 
             'region' : forms.Select(attrs={'class': 'form-control', 'id': 'region', 'disabled': 'true'}),
             'comuna' : forms.Select(attrs={'class': 'form-control', 'id': 'comuna', 'disabled': 'true'}),
         }
@@ -36,7 +36,7 @@ class FormCliente(forms.ModelForm):
             'nombre': 'Nombre',
             'apellido': 'Apellido',
             'rut': 'RUT',
-            'email': 'Correo Electrónico',
+            'username': 'Correo Electrónico',
             'telefono': 'Teléfono Móvil',
             'direccion': 'Dirección',
             'pais': 'País',
@@ -54,8 +54,8 @@ class FormCliente(forms.ModelForm):
         self.fields['comuna'].error_messages = {'required': 'Por favor seleccione una comuna.'}
 
     def clean_email(self):
-        email = self.cleaned_data['email']
-        if Cliente.objects.filter(email=email).exists():
+        email = self.cleaned_data['username']
+        if Cliente.objects.filter(username=username).exists():
             raise ValidationError("El correo electrónico ya está registrado.")
         return email     
 

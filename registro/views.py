@@ -28,10 +28,8 @@ def regiones_por_pais(request, id_pais):
     return JsonResponse(regiones_list, safe=False)
 
 def comunas_por_region(request, id_region):
-    # Filtrar las comunas que pertenecen a la región especificada
     comunas = Comuna.objects.filter(id_region=id_region)
-    # Crear una lista de diccionarios con la información de las comunas
     comunas_list = list(comunas.values('id_comuna', 'nombre_comuna'))
-    # Devolver la respuesta en formato JSON
+    
     return JsonResponse(comunas_list, safe=False)
 

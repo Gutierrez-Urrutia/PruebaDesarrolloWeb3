@@ -29,39 +29,43 @@
 <div class="galeria container-fluid py-5 text-center">
     <p class="titulo">¡Recién llegados!</p>
     <div id="comics" class="row">
+    {% if comics %}
         {% for comic in comics %}
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 my-3">
-            <div class="card h-100">
-                <img src="{{ comic.img_path }}" class="card-img-top" alt="..." style="max-height: 624.88px;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ comic.title }}</h5>
-                    <p class="card-text">${{ comic.price }}</p>
-                </div>
-                <div class="d-grid">
-                    <button class="btn btn-dark btn-block" onclick="location.href='./vistaProducto.html'">Comprar</button>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 my-3">
+                <div class="card h-100">
+                    <img src="{{ comic.img_path }}" class="card-img-top" alt="..." style="max-height: 624.88px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ comic.title }}</h5>
+                        <p class="card-text">${{ comic.price }}</p>
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btn-dark btn-block" onclick="location.href='./vistaProducto.html'">Comprar</button>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
-<div class="pagination">
-    <span class="step-links">
-        {% if comics.has_previous %}
-            <a href="?page=1#comics">&laquo; primera</a>
-            <a href="?page={{ comics.previous_page_number }}#comics">anterior</a>
-        {% endif %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if comics.has_previous %}
+                <a href="?page=1#comics">&laquo; primera</a>
+                <a href="?page={{ comics.previous_page_number }}#comics">anterior</a>
+            {% endif %}
 
-        <span class="current">
-            Página {{ comics.number }} de {{ comics.paginator.num_pages }}.
+            <span class="current">
+                Página {{ comics.number }} de {{ comics.paginator.num_pages }}.
+            </span>
+
+            {% if comics.has_next %}
+                <a href="?page={{ comics.next_page_number }}#comics">siguiente</a>
+                <a href="?page={{ comics.paginator.num_pages }}#comics">última &raquo;</a>
+            {% endif %}
         </span>
-
-        {% if comics.has_next %}
-            <a href="?page={{ comics.next_page_number }}#comics">siguiente</a>
-            <a href="?page={{ comics.paginator.num_pages }}#comics">última &raquo;</a>
-        {% endif %}
-    </span>
-</div>
+    </div>
+    {% else %}
+        <p>No hay comics disponibles.</p>
+    {% endif %}
 {% endblock %}
 {% block js %}
 <script src="{% static 'js/script.js' %}"></script>
