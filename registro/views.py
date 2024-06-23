@@ -1,24 +1,22 @@
 from django.http import JsonResponse
-from django.shortcuts import render #redirect
-from .models import Pais, Region, Comuna
+from django.shortcuts import render, redirect
+from .models import Pais, Region, Comuna, Cliente
 from django.views.decorators.csrf import csrf_exempt
-#from .forms import ClienteForm
+from .forms import FormCliente
 
-
-
-# Create your views here.
-#def registro(request):
-#    context = {}
-#    return render(request, 'registro.html', context)
 
 def registro(request):
     if(request.method == 'GET'):
-        paises = Pais.objects.all()
-        regiones = Region.objects.all()
-        comunas = Comuna.objects.all()
-        return render(request, 'registro.html', {'paises': paises, 'regiones': regiones, 'comunas': comunas})
+        form = FormCliente()
+        return render(request, 'registro.html', {'form': form })
     else:
-        request.POST[""]
+        form = FormCliente(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'registro.html', {'form': FormCliente(), 'registro_exitoso': True})
+        else:
+            return render(request, 'registro.html', {'form': form})
+
 def todos_los_paises(request):
     paises = Pais.objects.all()
     paises_list = list(paises.values('id_pais', 'nombre_pais'))  # Asumiendo que el modelo tiene estos campos
@@ -30,20 +28,8 @@ def regiones_por_pais(request, id_pais):
     return JsonResponse(regiones_list, safe=False)
 
 def comunas_por_region(request, id_region):
-    # Filtrar las comunas que pertenecen a la región especificada
     comunas = Comuna.objects.filter(id_region=id_region)
-    # Crear una lista de diccionarios con la información de las comunas
     comunas_list = list(comunas.values('id_comuna', 'nombre_comuna'))
-    # Devolver la respuesta en formato JSON
+    
     return JsonResponse(comunas_list, safe=False)
 
-# @csrf_exempt
-# def registrar_cliente(request):
-#     if request.method == 'POST':
-#         form = ClienteForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('login')
-#     else:
-#         form = ClienteForm()
-#     return render(request, 'registro.html', {'form': form})

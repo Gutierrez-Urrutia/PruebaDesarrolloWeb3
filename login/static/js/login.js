@@ -9,8 +9,8 @@ function obtenerDatos() {
 
     } else {
         const usuario = {
-            user: user,
-            pass: pass
+            user: document.getElementById('user').value,
+            pass: document.getElementById('pass').value
         }
 
         console.log(usuario)
@@ -19,6 +19,11 @@ function obtenerDatos() {
 
         alert(`¡Bienvenido ${usuario.user}!`)
     };
+};
+
+
+const validarCliente = (usuario) => {
+    
 };
 
 window.addEventListener('scroll', function () {

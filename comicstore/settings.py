@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'registro',
     'rest_framework',
     'crud',
+    'home',
 ]
 
 MIDDLEWARE = [

@@ -1,71 +1,40 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block css %}<link rel="stylesheet" href="{% static 'css/styleLogin.css' %}">{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/styleRegistro.css' %}">{% endblock %}
 {% block title %}Comicstore - Contacto{% endblock %}
 {% block content %}
 <div>
     <form class="formulario mb-5" method="post">
-       
         <h1>¡Bienvenido!</h1>
         <h4>Registro de nuevo usuario</h4>
-        <div class="mb-3">
-            <label for="name" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-        <div class="mb-3">
-            <label for="lastname" class="form-label">Apellido</label>
-            <input type="text" class="form-control" id="user" name="user" required>
-        </div>
-        <div class="mb-3">
-            <label for="run" class="form-label">RUN</label>
-            <input type="text" class="form-control" id="run" name="run"pattern="^\d{1,2}\.\d{3}\.\d{3}-[\dkK]$" required>
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Correo Electrónico</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="mb-3">
-            <label for="telefono" class="form-label">Teléfono Móvil</label>
-            <input type="text" class="form-control" id="telefono" name="telefono" pattern="^\+56\-\d\-\d{4}\-\d{4}$" placeholder="+56 9 9999 9999" required>
-        </div>
-        <div class="mb-3">
-            <label for="address" class="form-label">Dirección</label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="" required>
-        </div>
-        <div class="mb-3">
-            <label for="pais" class="form-label">Seleccione país</label>
-            <select class="form-select" id="pais" name="pais">
-                <option value="">Seleccione país</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="region" class="form-label">Seleccione región</label>
-            <select class="form-select" id="region" name="region" disabled>
-                <option value="">Seleccione región</option>    
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="comuna" class="form-label">Seleccione comuna</label>
-            <select class="form-select" id="comuna" name="comuna" disabled>
-                <option value="">Seleccione comuna</option> 
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="pass" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="pass" name="pass" required>
-        </div>
-        <div class="mb-3">
-            <label for="repass" class="form-label">Repetir Contraseña</label>
-            <input type="password" class="form-control" id="repass" name="repass" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Registrarse</button>
+                {% csrf_token %}    
+                {{ form.as_div }}
+        <button id="registrar" type="submit" class="btn btn-primary">Registrarse</button>
         <div>
             <h6>¿Ya tienes una cuenta? <a href="{% url 'login' %}"><u>Ingresa aquí</u></a></h4>
         </div>
     </form>
 </div>
+
+<input type="hidden" id="registro-exitoso-indicador" value="{% if registro_exitoso %}true{% else %}false{% endif %}">
+<!-- Modal HTML -->
+<div class="modal" id="successModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Registro Exitoso</h5>
+            </div>
+            <div class="modal-body">
+                <p>Su registro se ha completado con éxito.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'login' %}" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 {% block js %}
-    <script src="{% static 'js/registro.js' %}"></script>
+    <script src="{% static 'js/registrar.js' %}"></script>
 {% endblock %}
     
