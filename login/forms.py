@@ -22,4 +22,3 @@ class FormLogin(forms.Form):
         self.user = user
 
         return cleaned_data
-    

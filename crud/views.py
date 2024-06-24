@@ -9,7 +9,8 @@ def crud(request):
 
 def listar(request):
     comics = Comic.objects.all()
-    return render(request, 'listar.html', {'comics': comics})
+    context = { 'comics': comics }
+    return render(request, 'listar.html', context)
 
 def crear(request):
     if request.method == "POST":
