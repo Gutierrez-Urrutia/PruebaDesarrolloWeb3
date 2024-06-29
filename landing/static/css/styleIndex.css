@@ -76,6 +76,45 @@
     cursor: pointer;
 }
 
+.navbar-pagination {
+    background-color: #E7E7E7;
+}
+
+.navbar-pagination .page-link {
+    background-color: #E7E7E7; 
+    color: black; 
+    border-radius: 20px;
+    margin-right: 3px;
+    margin-bottom: 7px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #CED4DA;
+
+}
+
+.navbar-pagination .page-link:hover {
+    background-color: black;
+    color: white;
+  }
+
+.navbar-pagination .page-item.active .page-link {
+    background-color: #343a40; 
+    color: #fff;
+}
+
+.navbar-pagination .page-link:hover {
+    background-color: grey;
+  }
+  
+
+.navbar-pagination .page-item.active .page-link {
+    background-color: #343a40;
+    color: #fff;
+}
+
 @media (max-width: 576px) {
     .navbar .form-control {
         width: 100%;
