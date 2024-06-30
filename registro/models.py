@@ -1,23 +1,22 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 # Commented code
 class Cliente(models.Model):
-    
-    nombre = models.CharField(max_length=100)
-    apellido= models.CharField(max_length=100)
-    rut = models.CharField(unique=True, max_length=12)
-    username = models.EmailField(primary_key = True, max_length=100)
-    telefono = models.CharField(max_length=20)
-    direccion = models.CharField(max_length=200, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    nombre = models.CharField(max_length=50)
+    apellido = models.CharField(max_length=50)
+    rut = models.CharField(max_length=12)
+    telefono = models.CharField(primary_key=True, max_length=12)
+    direccion = models.CharField(max_length=100)
     pais = models.CharField(max_length=50)
     region = models.CharField(max_length=50)
     comuna = models.CharField(max_length=50)
-    password = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.nombre
+        return self.nombre 
 
 class Pais(models.Model):
     id_pais = models.AutoField(primary_key=True)

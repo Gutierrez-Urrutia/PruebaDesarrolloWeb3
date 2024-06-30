@@ -1,63 +1,65 @@
-import re
 from django import forms
-from .models import Cliente
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from .models import Cliente, Pais, Region, Comuna
+from django.db import transaction
+import re
 from django.core.exceptions import ValidationError
 
-class FormCliente(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label="Contraseña")
-    repassword = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label="Confirmar Contraseña")
+class FormCliente(UserCreationForm):
+    nombre = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="Nombre:")
+    apellido = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="Apellido:")
+    rut = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="RUT:")
+    email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="Correo electrónico:")
+    telefono = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="Teléfono:")
+    direccion = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="Dirección:")
+    pais = forms.CharField(widget=forms.Select(attrs={'class': 'form-control', 'id':'pais'}), label="País:")
+    region = forms.CharField(widget=forms.Select(attrs={'class': 'form-control', 'id':'region'}), label="Región:")
+    comuna = forms.CharField(widget=forms.Select(attrs={'class': 'form-control', 'id':'comuna'}), label="Comuna:")
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label="Contraseña:")
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label="Confirmar contraseña:")
+    
     class Meta:
-        model = Cliente
+        model = User
         fields = [
+            'username',
             'nombre',
             'apellido',
             'rut',
-            'username',
+            'email',
             'telefono',
             'direccion',
             'pais',
             'region',
             'comuna',
-            'password',
+            'password1',
+            'password2',
         ]
-        widgets = {
-            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su nombre'}),
-            'apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su apellido'}),
-            'rut': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su rut sin puntos y con guión'}),
-            'username': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'usuario@correo.com'}),
-            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '+56912345678'}),
-            'direccion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su dirección'}),
-            'pais' : forms.Select(attrs={'class': 'form-control', 'id': 'pais'}), 
-            'region' : forms.Select(attrs={'class': 'form-control', 'id': 'region', 'disabled': 'true'}),
-            'comuna' : forms.Select(attrs={'class': 'form-control', 'id': 'comuna', 'disabled': 'true'}),
-        }
-
         labels = {
-            'nombre': 'Nombre',
-            'apellido': 'Apellido',
-            'rut': 'RUT',
-            'username': 'Correo Electrónico',
-            'telefono': 'Teléfono Móvil',
-            'direccion': 'Dirección',
-            'pais': 'País',
-            'region': 'Región',
-            'comuna': 'Comuna',
+            'username': 'Nombre de usuario:',
         }
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+        }
+    @transaction.atomic
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        if commit:
+            user.save()
+            cliente = Cliente(user=user, nombre=self.cleaned_data['nombre'], apellido=self.cleaned_data['apellido'], rut=self.cleaned_data['rut'], telefono=self.cleaned_data['telefono'], direccion=self.cleaned_data['direccion'], pais=self.cleaned_data.get('pais'), region=self.cleaned_data.get('region'), comuna=self.cleaned_data.get('comuna'))
+            cliente.save()
+        return user
     
     def __init__(self, *args, **kwargs):
         super(FormCliente, self).__init__(*args, **kwargs)
+        self.fields['username'].help_text = None
         self.fields['pais'].required = True
         self.fields['pais'].error_messages = {'required': 'Por favor, seleccione un país.'}
         self.fields['region'].required = True
         self.fields['region'].error_messages = {'required': 'Por favor, seleccione una región.'}
         self.fields['comuna'].required = True
         self.fields['comuna'].error_messages = {'required': 'Por favor seleccione una comuna.'}
-
-    def clean_email(self):
-        email = self.cleaned_data['username']
-        if Cliente.objects.filter(username=username).exists():
-            raise ValidationError("El correo electrónico ya está registrado.")
-        return email     
 
     def clean_rut(self):
         rut = self.cleaned_data['rut']
@@ -74,11 +76,14 @@ class FormCliente(forms.ModelForm):
         if not re.match(pattern, telefono):
             raise ValidationError("Ingrese un número con formato +56912345678")
         return telefono 
-    
+
     def clean(self):
-        cleaned_data = super().clean()
-        password = cleaned_data.get('password')
-        repassword = cleaned_data.get('repassword')
-        if password != repassword:
-            self.add_error('password', "Las contraseñas no coinciden")
-        return cleaned_data
+        super(FormCliente, self).clean()  # No olvides llamar al método clean de la superclase
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+
+        if password1 and password2 and password1 != password2:
+            self.add_error('password2', 'Las contraseñas no coinciden.')
+
+        # Asegúrate de devolver los datos limpios
+        return self.cleaned_data

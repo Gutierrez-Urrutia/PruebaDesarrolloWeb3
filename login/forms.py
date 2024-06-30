@@ -4,8 +4,21 @@ from registro.models import Cliente
 from django.contrib.auth import authenticate
 
 class FormLogin(forms.Form):
-    username = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su correo electrónico'}), label="Correo Electrónico", )
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su contraseña'}), label="Contraseña",)
+    
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'password',
+        ]
+        labels = {
+            'username': 'Nombre de usuario:',
+            'password': 'Contraseña:'
+        }
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
+        }
 
     def clean(self):
         cleaned_data = super().clean()
