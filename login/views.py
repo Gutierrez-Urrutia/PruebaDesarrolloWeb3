@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.contrib import messages
 from .forms import FormLogin
+from django.contrib.auth import login
 
 def login_view(request):
     if request.method == 'POST':
@@ -9,9 +8,8 @@ def login_view(request):
         if form.is_valid():
             user = form.user
             login(request, user)
-            return redirect('home.html')
-        # No crear una nueva instancia de FormLogin, usar la existente
-        return render(request, 'login.html', {'form': form})
+
+            return redirect('home')
     else:
         form = FormLogin()
     return render(request, 'login.html', {'form': form})

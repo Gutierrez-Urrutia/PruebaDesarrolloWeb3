@@ -1,91 +1,68 @@
     {% extends 'base.html' %}
     {% load static %}
-    {% block css %}<link rel="stylesheet" href="{% static 'css/style.css' %}">{% endblock %}
-    {% block title %}Comicstore - Contacto{% endblock %}
+    {% block css %}<link rel="stylesheet" href="{% static 'css/styleProducto.css' %}">{% endblock %}
+    {% block title %}Comicstore - Producto{% endblock %}
     {% block content %}
     <div class="container spacer mb-5">
         <div class="row">
-            <div class="col-md-4">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{% static 'img/clean (1).jpg' %}" class="d-block w-100" alt="Producto">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'img/clean (3).jpg' %}" class="d-block w-100" alt="Producto">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'img/clean (4).jpg' %}" class="d-block w-100" alt="Producto">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'img/clean (5).jpg' %}" class="d-block w-100" alt="Producto">
+            <div class="card mb-3 border-0">
+                <div class="row g-0">
+                  <div class="col-lg-4 text-center">
+                    <img src="{{ comic.img_path }}" class="img-fluid" alt="...">
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="card-body">
+                      <p class="card-title titulo">{{ comic.title }}</p>
+                      <p class="subtitulo">Precio: ${{ comic.price }}</p>
+                      <p class="info card-text">ID: {{ comic.id }}</p>
+                      <p class="info card_text">Estado: Disponible</p>
+                      <div class="mb-1">
+                        <label for="cantidadInput" class="info form-label">Cantidad:</label>
+                    </div>
+    
+                    <div class="col-md-6 col-lg-4">
+                        <div class="input-group">
+                            <button class="btn btn-outline-secondary" type="button" id="btnMenos">-</button>
+    
+                            <input type="text" class="form-control text-center" id="cantidadInput" value="1"
+                                pattern="[0-9]*" inputmode="numeric">
+    
+                            <button class="btn btn-outline-secondary" type="button" id="btnMas">+</button>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    <div class="d-grid col-md-6 col-lg-4">
+                        <button type="button" class="btn btn-primary mt-3" onclick="añadidoCarrito()" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"><i class="fas fa-shopping-cart me-1"></i><span class="info">Añadir al Carrito</span></button>
+                    </div>
+                    <div class="mt-3">
+                        <p class="spacer2 mt-5 subtitulo">Descripción:</p>
+                        <p class="info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa sequi dignissimos aliquid dolorem
+                            pariatur corrupti earum dolor enim non hic. Eum eos molestias, quis vero aliquid ullam rerum
+                            consequuntur perspiciatis.
+                        </p>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div class="col-md-8">
-                <h2 class="mt-2">Marvel: Colección Definitiva </h2>
-                <p class="selector"><strong>Precio:</strong> $124.000</p>
-                <div>
-                    <p class="selector2 mb-0">ID: 312JHH123</p>
-                    <p class="selector2">Stock: Disponible</p>
+        </div>
+    </div>
+    <div class="modal" id="exampleModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">El producto se agregó exitosamente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
                 </div>
-                <div class="mb-1">
-                    <label for="cantidadInput" class="form-label">Cantidad:</label>
+                <div class="modal-body mt-3">
+                    <p>{{ comic.title }}</p>
+                    <p>${{124.000}}</p>
                 </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="input-group">
-                        <button class="btn btn-outline-secondary" type="button" id="btnMenos">-</button>
-
-                        <input type="text" class="form-control text-center" id="cantidadInput" value="1"
-                            pattern="[0-9]*" inputmode="numeric">
-
-                        <button class="btn btn-outline-secondary" type="button" id="btnMas">+</button>
-                    </div>
-                </div>
-                <div class="d-grid col-md-6 col-lg-4">
-                    <button type="button" class="btn btn-primary mt-3" onclick="añadidoCarrito()" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"><i class="fas fa-shopping-cart me-1"></i>Añadir al Carrito</button>
-                </div>
-                <!-- MODAL -->
-                <div class="modal" id="exampleModal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">El producto se agregó exitosamente</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true"></span>
-                                </button>
-                            </div>
-                            <div class="modal-body mt-3">
-                                <p>MARVEL: COLECCION DEFINITIVA</p>
-                                <p>$124.000</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" onclick="location.href='./carrito.html'">Ir al carrito</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="location.href='./index.html#galeria'">Seguir comprando</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-3">
-                    <h4 class="spacer2 mt-5">Descripción:</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa sequi dignissimos aliquid dolorem
-                        pariatur corrupti earum dolor enim non hic. Eum eos molestias, quis vero aliquid ullam rerum
-                        consequuntur perspiciatis.
-                    </p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="location.href='./carrito.html'">Ir al carrito</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="location.href='./index.html#galeria'">Seguir comprando</button>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import login_view  # Asegúrate de importar tu vista personalizada
 
 urlpatterns = [
-    path('', views.login_view, name='login')
+    path('', login_view, name='login')  # Actualiza esta línea para usar tu vista personalizada
 ]
