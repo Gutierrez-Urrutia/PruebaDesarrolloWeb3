@@ -13,19 +13,6 @@
 .spacer2{
     margin-top: 20px;
 }
-/* Tamaño Imagen Detalle */
-.product-image {
-    max-width: 100%;
-    height: auto;
-} 
-/* Cambio de Tamaño Fuente */
-.selector{
-    font-size: 30px;
-}
-/* Cambio de Tamaño Fuente */
-.selector2{
-    font-size: 13px;
-}
 
 .superman-icon {
     position: fixed;
