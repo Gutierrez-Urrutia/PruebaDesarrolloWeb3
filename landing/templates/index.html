@@ -26,7 +26,7 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<div class="galeria container-fluid py-5 text-center">
+<div class="galeria container-fluid pt-5 pb-2 text-center">
     <p class="titulo">¡Recién llegados!</p>
     <div id="comics" class="row">
     {% if comics %}
@@ -51,7 +51,7 @@
     <div class="navbar-pagination">
       <ul class="pagination justify-content-center mb-0">
         {% if comics.has_previous %}
-          <li class="page-item">
+          <li class="page-item mb-3">
             <a class="page-link" href="?page=1#comics" aria-label="First">
               <span aria-hidden="true">&laquo;</span>
             </a>
@@ -70,7 +70,7 @@
         {% endfor %}
     
         {% if comics.has_next %}
-          <li class="page-item">
+          <li class="page-item mb-3">
             <a class="page-link" href="?page={{ comics.next_page_number }}#comics" aria-label="Next">
               <span aria-hidden="true">&rsaquo;</span>
             </a>
