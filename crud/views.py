@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect
 from .models import Comic
 from .forms import FormComic
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def crud(request):
-    context = {}
+    form = AuthenticationForm()
+    context = { 'form': form }
     return render(request, 'crud.html', context)
 
+@login_required
 def listar(request):
     comics = Comic.objects.all()
     context = { 'comics': comics }
