@@ -20,44 +20,47 @@
 
 <body id="superman-scroll">
     <!-- Navbar -->
-    
     <div>
         <img class="banner" src="{% static 'img/BannerComic.jpg' %}" alt="">
     </div>
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-        <div class="container d-flex justify-content-center">
-            <div class="row ">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
-                    aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarColor01">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'index' %}">INICIO</a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="js" class="nav-link" href="{% url 'index' %}#comics">PRODUCTOS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">INGRESAR</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'contacto' %}">CONTACTO</a>
-                        </li>
-                    </ul>
-                    <a href="{% url 'carrito' %}"><i class="ms-5 me-4 fa-solid fa-cart-shopping fa-3x"></i></a>
-                </div>
-                <div class="row mt-3">
-                    <form class="d-flex">
-                        <input class="form-control me-sm-2" type="search" placeholder="Buscar">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
-                    </form>
-                </div>
+        <div class="container-fluid">
+          <a class="navbar-brand ms-3" href="#">COMICSTORE</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a id="js" class="nav-link" href="{% url 'index' %}">INICIO</a>
+                </li>
+                <li class="nav-item">
+                    <a id="js" class="nav-link" href="{% url 'index' %}#comics">PRODUCTOS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">INGRESAR</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contacto' %}">CONTACTO</a>
+                </li>
+            </ul>
+            <div class="nav-item">
+                <a href="{% url 'carrito' %}"><i class="text-end fa-solid fa-cart-shopping fa-3x"></i></a>
             </div>
+            {% if user.is_authenticated %}
+        <div class="dropdown me-3 my-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Bienvenido, {{ user.username }}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="{% url 'home' %}">Home</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+            </ul>
         </div>
-    </nav>
-
+        {% endif %}
+          </div>
+        </div>
+      </nav>
     <!-- Content -->
     {% block content %}{% endblock %}
     <div class="container">
