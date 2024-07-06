@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import FormLogin
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 
 def login_view(request):
     if request.method == 'POST':
@@ -9,7 +9,10 @@ def login_view(request):
             user = form.user
             login(request, user)
 
-            return redirect('home')
+        if user.is_superuser:
+            return redirect('listar')
+        else:
+            return redirect('index')
     else:
         form = FormLogin()
     return render(request, 'login.html', {'form': form})

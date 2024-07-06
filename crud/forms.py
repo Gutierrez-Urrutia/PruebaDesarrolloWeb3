@@ -15,3 +15,4 @@ class FormComic(forms.ModelForm):
             'img_path': 'Ruta de la Imagen',
             'price': 'Precio',
         }
+

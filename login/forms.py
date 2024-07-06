@@ -30,8 +30,8 @@ class FormLogin(forms.Form):
         if user is None:
             raise ValidationError('Las credenciales son incorrectas.')
     
-        if not Cliente.objects.filter(user=user).exists():
-            raise ValidationError('No hay un cliente asociado a este usuario.')
+        # if not Cliente.objects.filter(user=user).exists():
+        #     raise ValidationError('No hay un cliente asociado a este usuario.')
     
         self.user = user
 
