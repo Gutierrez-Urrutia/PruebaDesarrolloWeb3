@@ -53,7 +53,9 @@
                 Bienvenido, {{ user.username }}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {% if not user.is_superuser %}
                 <li><a class="dropdown-item" href="{% url 'home' %}">Home</a></li>
+                {% endif %}
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
             </ul>
         </div>

@@ -9,10 +9,12 @@ def login_view(request):
             user = form.user
             login(request, user)
 
-        if user.is_superuser:
-            return redirect('listar')
+            if user.is_superuser:
+                return redirect('listar')
+            else:
+                return redirect('index')
         else:
-            return redirect('index')
+            return render(request, 'login.html', {'form': form})
     else:
         form = FormLogin()
     return render(request, 'login.html', {'form': form})
