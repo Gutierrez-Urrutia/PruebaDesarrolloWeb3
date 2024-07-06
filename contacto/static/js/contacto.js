@@ -8,7 +8,11 @@ enviar.addEventListener('click', () => {
     if (titulo == '' || email == '' || texto == '') {
         alert('Por favor complete todos los campos antes de enviar.')
     } else {
-        alert('¡Formulario enviado exitosamente!');
+        
+        var successModal = new bootstrap.Modal(document.getElementById('successModal'), {
+            keyboard: false 
+        });
+        successModal.show();
 
     }
 });
