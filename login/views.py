@@ -12,7 +12,7 @@ def login_view(request):
             if user.is_superuser:
                 return redirect('listar')
             else:
-                return redirect('index')
+                return redirect('landing:index')
         else:
             return render(request, 'login.html', {'form': form})
     else:
