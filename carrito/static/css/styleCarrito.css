@@ -13,6 +13,13 @@
     padding: 20px; /* Espaciado interno del formulario */
 }
 
+.thumbnail {
+    width: 27%;
+    height: 27%;
+    object-fit: cover;
+
+}
+
 .imagen {
     max-width: 15rem;
     max-height: 16.3rem;

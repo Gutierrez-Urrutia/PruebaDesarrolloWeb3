@@ -10,7 +10,7 @@ def crud(request):
 def superuser_required(view_func):
     decorated_view = user_passes_test(
         lambda u: u.is_authenticated and u.is_superuser,
-        login_url='index',  
+        login_url='landing:index',  
     )
     return decorated_view(view_func)
 

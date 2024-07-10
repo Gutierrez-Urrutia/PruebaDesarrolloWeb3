@@ -29,5 +29,5 @@ urlpatterns = [
     path('registro/', include('registro.urls')),
     path('crud/', include('crud.urls')),
     path('home/', include('home.urls')),
-    path('logout/', auth_views.LogoutView.as_view(next_page='index'), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='landing:index'), name='logout'),
 ]
