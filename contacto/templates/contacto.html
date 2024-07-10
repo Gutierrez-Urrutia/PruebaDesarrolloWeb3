@@ -1,9 +1,9 @@
     {% extends 'base.html' %}
     {% load static %}
-    {% block css %}<link rel="stylesheet" href="{% static 'css/style.css' %}">{% endblock %}
+    {% block css %}<link rel="stylesheet" href="{% static 'css/styleContacto.css' %}">{% endblock %}
     {% block title %}Comicstore - Contacto{% endblock %}
     {% block content %}
-    <div class="container spacer mb-5">
+    <div class="container spacer mb-5" style="padding-botttom: 4.5%; padding-top: 4.5%;">
         <h1 class="text-center">Contacto</h1>
         <div class="row spacer">
             <div class="col-md-6">
@@ -33,7 +33,9 @@
                 <div class="mb-3">
                     <label for="textArea1" class="form-label">Servicio a realizar</label>
                     <textarea class="form-control" id="textArea1" rows="3"></textarea>
-                    <button id="enviar" type="submit" class="btn btn-dark mt-3 spacer">Enviar</button>
+                    <div class="text-center">
+                        <button id="enviar" type="submit" class="btn btn-dark mt-3 spacer">Enviar</button>
+                    </div>
                 </div>
             </div>
         </div>

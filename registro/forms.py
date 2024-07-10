@@ -7,17 +7,17 @@ import re
 from django.core.exceptions import ValidationError
 
 class FormCliente(UserCreationForm):
-    nombre = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="Nombre:")
-    apellido = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="Apellido:")
-    rut = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="RUT:")
-    email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="Correo electrónico:")
-    telefono = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="Teléfono:")
-    direccion = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="Dirección:")
-    pais = forms.CharField(widget=forms.Select(attrs={'class': 'form-control', 'id':'pais'}), label="País:")
-    region = forms.CharField(widget=forms.Select(attrs={'class': 'form-control', 'id':'region'}), label="Región:")
-    comuna = forms.CharField(widget=forms.Select(attrs={'class': 'form-control', 'id':'comuna'}), label="Comuna:")
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label="Contraseña:")
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label="Confirmar contraseña:")
+    nombre = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control mb-3'}), label="Nombre:")
+    apellido = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control mb-3'}), label="Apellido:")
+    rut = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control mb-3'}), label="RUT:")
+    email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control mb-3'}), label="Correo electrónico:")
+    telefono = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control mb-3'}), label="Teléfono:")
+    direccion = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control mb-3'}), label="Dirección:")
+    pais = forms.CharField(widget=forms.Select(attrs={'class': 'form-control mb-3', 'id':'pais'}), label="País:")
+    region = forms.CharField(widget=forms.Select(attrs={'class': 'form-control mb-3', 'id':'region'}), label="Región:")
+    comuna = forms.CharField(widget=forms.Select(attrs={'class': 'form-control mb-3', 'id':'comuna'}), label="Comuna:")
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control mb-3'}), label="Contraseña:")
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control mb-3'}), label="Confirmar contraseña:")
     
     class Meta:
         model = User
@@ -39,7 +39,7 @@ class FormCliente(UserCreationForm):
             'username': 'Nombre de usuario:',
         }
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'username': forms.TextInput(attrs={'class': 'form-control mb-3'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
         }
     @transaction.atomic

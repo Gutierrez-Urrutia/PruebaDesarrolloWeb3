@@ -8,12 +8,12 @@ from django.contrib.auth import get_user_model
 class FormLogin(forms.Form):
     username = forms.CharField(
         label='Nombre de usuario:',
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        widget=forms.TextInput(attrs={'class': 'form-control mt-3'}),
         max_length=150  
     )
     password = forms.CharField(
         label='Contraseña:',
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        widget=forms.PasswordInput(attrs={'class': 'form-control mt-3'})
     )
 
     User = get_user_model()
