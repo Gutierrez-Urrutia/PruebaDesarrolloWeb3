@@ -10,6 +10,12 @@ Comicstore es una aplicación web desarrollada en Django que permite a los usuar
 * **Autenticación y Registro:** Permite a los usuarios crear cuentas, iniciar sesión y gestionar su información personal.
 * **Contacto:** Un formulario de contacto para que los usuarios se comuniquen con el administrador de la tienda.
 
+## Despliegue de la aplicación
+  
+* La aplicación puede ser testeada, con todas sus funcionalidades, en la siguiente dirección:
+
+  * `https://comicstore.up.railway.app/`
+
 ## Estructura del Proyecto
 
 PruebaDesarrolloWeb3/  
