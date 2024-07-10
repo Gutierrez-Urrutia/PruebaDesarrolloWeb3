@@ -33,11 +33,9 @@ PruebaDesarrolloWeb3/
     └── requirements.txt  
 
 * **`carrito/`, `comicstore/`, `contacto/`, etc.:** Aplicaciones Django que manejan la lógica y vistas de cada sección de la tienda.
-* **`.gitignore`:** Especifica los archivos y directorios que Git debe ignorar.
 * **`cargar_comics.py`, `cargar_comunas.py`, `cargar_regiones.py`:** Scripts para cargar datos iniciales desde archivos CSV y JSON.
 * **`comics.csv`, `comunas.csv`:** Archivos de datos que contienen información sobre cómics, comunas y regiones.
 * **`db.sqlite3`:** Base de datos SQLite que almacena los datos de la aplicación.
-* **`get-pip.py`:** Script para instalar el gestor de paquetes pip si no está presente.
 * **`manage.py`:** Interfaz de línea de comandos para administrar el proyecto Django.
 * **`regiones.json`:** Archivo de datos que contiene información sobre regiones.
 * **`requirements.txt`:** Lista de dependencias de Python necesarias para ejecutar el proyecto.
