@@ -18,7 +18,7 @@ Comicstore es una aplicación web desarrollada en Django que permite a los usuar
   ### Cliente de Prueba
     * Usuario: pablo666 Contraseña: macoy123
   ### Administrador (superuser) de prueba
-    *Usuario: admin Contraseña: Oracle.123456 
+    * Usuario: admin Contraseña: Oracle.123456 
 
 ## Estructura del Proyecto
 
