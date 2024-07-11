@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*unvbh0q@xrrf@vcc5!2yreot@5f&dd7v1%dqqxpb7dge9x68i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = False en produccion
+#DEBUG = False #en produccion
 DEBUG = True
 
-#ALLOWED_HOSTS = ['comicstore.up.railway.app'] en produccion
+#ALLOWED_HOSTS = ['comicstore.up.railway.app'] #en produccion
 ALLOWED_HOSTS = []
 
 
@@ -54,7 +54,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    #'whitenoise.middleware.WhiteNoiseMiddleware', sirve estaticos en produccion
+    #'whitenoise.middleware.WhiteNoiseMiddleware', activado en produccion 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -159,7 +159,7 @@ LOGGING = {
     },
 }
 
-#CSRF_TRUSTED_ORIGINS = ['https://comicstore.up.railway.app'] permite login en produccion
+#CSRF_TRUSTED_ORIGINS = ['https://comicstore.up.railway.app'] #permite login en produccion
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') se usa en produccion
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' guarda estaticos, en produccion
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #se usa en produccion
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' #guarda estaticos, en produccion

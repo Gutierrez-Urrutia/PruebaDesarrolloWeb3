@@ -11,10 +11,10 @@
         </div>
         <div class="col-4">
             <a href="{% url 'crear' %}" class="btn btn-primary float-end">Crear Comic</a> 
-           
         </div>
-    </div>
-    <table class="table table-striped">
+
+        </div class="table-responsive">
+            <table class="table table-striped">
         <thead>
             <tr class="text-center">
                 <th scope="col">Id</th>
@@ -38,6 +38,9 @@
             {% endfor %}
         </tbody>
     </table>
+        <div>
+
+    </div>
 </div>
 {% endblock %}
 {% block js %}

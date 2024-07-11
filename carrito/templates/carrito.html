@@ -8,27 +8,29 @@
             <div class="mt-3" style="padding-top:7.5%; padding-bottom:7.5%;" id="mensajeCarritoVacio"></div>
             <div id="tabla" class="container">
                 <h3 id="tituloCarro" class="mb-3"></h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Eliminar</th>
-                            <th>Imagen</th>
-                            <th>ID</th>
-                            <th>Título</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody id="mostrarCarrito"></tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="5"></td>
-                            <td class="fw-bold">Total</td>
-                            <td id="totalCarrito" class="fw-bold"></td>
-                        </tr>
-                    </tfoot>
-                </table>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Eliminar</th>
+                                <th>Imagen</th>
+                                <th>ID</th>
+                                <th>Título</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mostrarCarrito"></tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td class="fw-bold">Total</td>
+                                <td id="totalCarrito" class="fw-bold"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div> 
                 <button id="btnPago" type="button" class="btn btn-primary" onclick="location.href='#'">Finalizar Compra</button>
             </div>
         </div>
