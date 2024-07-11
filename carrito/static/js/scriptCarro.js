@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    var listaCarrito = JSON.parse(localStorage.getItem('cart'));
+    var listaCarrito = JSON.parse(localStorage.getItem('cart'))||[];
 
     showCart();
 
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const tabla = document.getElementById('tabla');
         const mensajeCarritoVacio = document.getElementById('mensajeCarritoVacio'); // Asegúrate de tener este elemento en tu HTML
     
-        let total = 0;
+        let total = 0;  
 
         if (listaCarrito.length === 0) {
             tabla.style.display = 'none'; // Oculta la tabla
